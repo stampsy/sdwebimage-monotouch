@@ -21,5 +21,11 @@ namespace SDWebImage
             SDWebImageManager.SharedManager.SetBackgroundImage (button, url);
         }
     }
+
+    // A little help for Interface Builder
+    public partial class SDWebImageManagerDelegate : UIView
+    {
+
+    }
 }
 
