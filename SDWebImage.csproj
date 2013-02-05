@@ -51,7 +51,6 @@
     <Compile Include="libSDWebImage.linkwith.cs">
       <DependentUpon>libSDWebImage.a</DependentUpon>
     </Compile>
-    <Compile Include="Extensions.cs" />
-    <Compile Include="WebImageView.cs" />
+    <Compile Include="Extra.cs" />
   </ItemGroup>
 </Project>
