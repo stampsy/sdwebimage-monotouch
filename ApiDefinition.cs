@@ -67,7 +67,13 @@ namespace SDWebImage
 	[BaseType (typeof (NSObject))]
 	interface SDImageCache
 	{
+        [Static, Export ("sharedImageCache")]
+        SDImageCache SharedImageCache { get; }
+
 		[Static, Export ("setMaxCacheAge:")]
 		void SetMaxCacheAge (int age);
+
+        [Export ("storeImage:forKey:")]
+        void StoreImage (UIImage image, string key);
 	}
 }
