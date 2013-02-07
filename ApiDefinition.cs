@@ -75,5 +75,8 @@ namespace SDWebImage
 
         [Export ("storeImage:forKey:")]
         void StoreImage (UIImage image, string key);
+
+        [Export ("imageFromKey:fromDisk:")]
+        UIImage GetImage (string key, bool fromDisk);
 	}
 }
