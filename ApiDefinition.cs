@@ -78,5 +78,9 @@ namespace SDWebImage
 
         [Export ("imageFromKey:fromDisk:")]
         UIImage GetImage (string key, bool fromDisk);
+
+        [Export ("cachePathForKey:"), Advice ("This is a private method so be careful!")]
+        string GetCachePath (string key);
+
 	}
 }
