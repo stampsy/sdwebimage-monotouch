@@ -10,5 +10,12 @@ namespace SDWebImage
 		SDWebImageProgressiveDownload = 1 << 3,
         None = 0
 	}
+
+    public enum SDImageCacheType
+    {
+        SDImageCacheTypeNone = 0,
+        SDImageCacheTypeDisk,
+        SDImageCacheTypeMemory
+    }
 }
 

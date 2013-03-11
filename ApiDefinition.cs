@@ -82,5 +82,43 @@ namespace SDWebImage
         [Export ("cachePathForKey:"), Advice ("This is a private method so be careful!")]
         string GetCachePath (string key);
 
-	}
+        [Export ("initWithNamespace:")]
+        IntPtr Constructor (string ns);
+
+        [Export ("storeImage:forKey:toDisk:")]
+        void StoreImage (UIImage image, string key, bool toDisk);
+
+        [Export ("storeImage:imageData:forKey:toDisk:")]
+        void StoreImage (UIImage image, NSData data, string key, bool toDisk);
+
+        [Export ("queryDiskCacheForKey:done:")]
+        void QueryDiskCache (string key, Action<UIImage, SDImageCacheType> done);
+
+        [Export ("imageFromMemoryCacheForKey:")]
+        UIImage ImageFromMemoryCache (string key);
+
+        [Export ("imageFromDiskCacheForKey:")]
+        UIImage ImageFromDiskCache (string key);
+
+        [Export ("removeImageForKey:")]
+        void RemoveImage (string key);
+
+        [Export ("removeImageForKey:fromDisk:")]
+        void RemoveImage (string key, bool fromDisk);
+
+        [Export ("clearMemory")]
+        void ClearMemory ();
+
+        [Export ("clearDisk")]
+        void ClearDisk ();
+
+        [Export ("cleanDisk")]
+        void CleanDisk ();
+
+        [Export ("getSize")]
+        int GetSize ();
+
+        [Export ("getDiskCount")]
+        int GetDiskCount ();
+    }
 }
