@@ -29,26 +29,26 @@ namespace SDWebImage
 
     public static class Extensions
     {
-        public static void SetImage (this UIImageView view, NSUrl url)
+        public static void SetImage (this UIImageView view, NSUrl url, UIImage placeholder = null)
         {
-            SDWebImageManager.SharedManager.SetImage (view, url);
+            SDWebImageManager.SharedManager.SetImage (view, url, placeholder);
         }
         
-        public static void SetImage (this UIImageView view, string url)
+        public static void SetImage (this UIImageView view, string url, UIImage placeholder = null)
         {
             if (!Uri.IsWellFormedUriString (url, UriKind.Absolute)) return;
-            SDWebImageManager.SharedManager.SetImage (view, NSUrl.FromString (url));
+            SDWebImageManager.SharedManager.SetImage (view, NSUrl.FromString (url), placeholder);
         }
-        
-        public static void SetImage (this UIButton button, NSUrl url)
+
+        public static void SetImage (this UIButton button, NSUrl url, UIImage placeholder = null)
         {
-            SDWebImageManager.SharedManager.SetImage (button, url);
+            SDWebImageManager.SharedManager.SetImage (button, url, placeholder);
         }
         
-        public static void SetImage (this UIButton button, string url)
+        public static void SetImage (this UIButton button, string url, UIImage placeholder = null)
         {
             if (!Uri.IsWellFormedUriString (url, UriKind.Absolute)) return;
-            SDWebImageManager.SharedManager.SetImage (button, NSUrl.FromString (url));
+            SDWebImageManager.SharedManager.SetImage (button, NSUrl.FromString (url), placeholder);
         }
         
         public static void SetBackgroundImage (this UIButton button, NSUrl url)

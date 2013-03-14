@@ -51,8 +51,14 @@ namespace SDWebImage
 		[Bind ("setImageWithURL:")]
 		void SetImage ([Target] UIImageView view, NSUrl url);
 
+        [Bind ("setImageWithURL:placeholderImage:")]
+        void SetImage ([Target] UIImageView view, NSUrl url, UIImage placeholder);
+
         [Bind ("setImageWithURL:")]
         void SetImage ([Target] UIButton view, NSUrl url);
+
+        [Bind ("setImageWithURL:placeholderImage:")]
+        void SetImage ([Target] UIButton view, NSUrl url, UIImage placeholder);
 
         [Bind ("setBackgroundImageWithURL:")]
         void SetBackgroundImage ([Target] UIButton view, NSUrl url);
