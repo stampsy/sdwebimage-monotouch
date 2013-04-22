@@ -63,6 +63,9 @@ namespace SDWebImage
         [Bind ("setBackgroundImageWithURL:")]
         void SetBackgroundImage ([Target] UIButton view, NSUrl url);
         
+        [Export ("downloadWithURL:delegate:")]
+        void Download (NSUrl url, NSObject del);
+
         [Export ("downloadWithURL:delegate:options:")]
 		void Download (NSUrl url, NSObject del, SDWebImageOptions options);
 
