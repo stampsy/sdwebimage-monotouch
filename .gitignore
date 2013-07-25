@@ -1,4 +1,5 @@
 *.sln
+*.userprefs
 
 # mstest test results
 TestResults
