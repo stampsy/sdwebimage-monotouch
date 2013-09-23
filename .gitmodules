@@ -1,0 +1,3 @@
+[submodule "src/Native/SDWebImage"]
+	path = src/Native/SDWebImage
+	url = https://github.com/rs/SDWebImage.git
