@@ -12,39 +12,19 @@ namespace SDWebImage
 
     public partial class SDWebImageManager : NSObject
     {
-		public void Download (string url, SDWebImageOptions options, SDWebImageDownloaderProgressBlock progress, SDWebImageCompletedWithFinishedBlock completed)
+		public SDWebImageOperation Download (string url, SDWebImageOptions options = SDWebImageOptions.None, SDWebImageDownloaderProgressBlock progress = null, SDWebImageCompletedWithFinishedBlock completed = null)
         {
-            if (!Uri.IsWellFormedUriString (url, UriKind.Absolute)) return;
-            Download (NSUrl.FromString (url), options, progress, completed);
+			if (!Uri.IsWellFormedUriString (url, UriKind.Absolute)) throw new Exception (String.Format ("Malformed url: {0}", url));
+            return Download (NSUrl.FromString (url), options, progress, completed);
         }
-    }
 
-    public partial class SDWebImageManagerDelegate : UIView
-    {
-    }
-
-	public class ImageDownloadResult
-	{
-		public ImageDownloadResult (UIImage image, SDImageCacheType cacheType)
-		{
-			Image = image;
-			CacheType = cacheType;
-		}
-		public UIImage Image { get; private set; }
-		public SDImageCacheType CacheType { get; private set; }
-	}
-
-    public static class Extensions
-    {
-		#region SDWebImageManager
-
-		public static Task<ImageDownloadResult> DownloadAsync (this SDWebImageManager manager, NSUrl url, SDWebImageOptions options = SDWebImageOptions.None, SDWebImageDownloaderProgressBlock progress = null, CancellationToken token = default(CancellationToken))
+		public Task<ImageDownloadResult> DownloadAsync (NSUrl url, SDWebImageOptions options = SDWebImageOptions.None, SDWebImageDownloaderProgressBlock progress = null, CancellationToken token = default(CancellationToken))
 		{
 			var tcs = new TaskCompletionSource<ImageDownloadResult> ();
 
 			SDWebImageOperation operation = null;
 
-			operation = manager.Download (url, options, progress, (image, error, cacheType, finished) => {
+			operation = Download (url, options, progress, (image, error, cacheType, finished) => {
 				if (token.IsCancellationRequested) {
 					operation.Cancel ();
 					tcs.TrySetCanceled ();
@@ -62,15 +42,27 @@ namespace SDWebImage
 			return tcs.Task;
 		}
 
-		public static Task<ImageDownloadResult> DownloadAsync (this SDWebImageManager manager, string url, SDWebImageOptions options = SDWebImageOptions.None, SDWebImageDownloaderProgressBlock progress = null, CancellationToken token = default(CancellationToken))
+		public Task<ImageDownloadResult> DownloadAsync (string url, SDWebImageOptions options = SDWebImageOptions.None, SDWebImageDownloaderProgressBlock progress = null, CancellationToken token = default(CancellationToken))
 		{
 			if (!Uri.IsWellFormedUriString (url, UriKind.Absolute)) throw new Exception (String.Format ("Malformed url: {0}", url));
 
-			return DownloadAsync (manager, NSUrl.FromString (url), options, progress, token);
+			return DownloadAsync (NSUrl.FromString (url), options, progress, token);
 		}
+    }
 
-		#endregion
+	public class ImageDownloadResult
+	{
+		public ImageDownloadResult (UIImage image, SDImageCacheType cacheType)
+		{
+			Image = image;
+			CacheType = cacheType;
+		}
+		public UIImage Image { get; private set; }
+		public SDImageCacheType CacheType { get; private set; }
+	}
 
+    public static class Extensions
+    {
 		#region UIImageView
 
 		public static void SetImage (this UIImageView view, NSUrl url, UIImage placeholder = null, SDWebImageOptions options = SDWebImageOptions.None, SDWebImageDownloaderProgressBlock progress = null, SDWebImageCompletedBlock completed = null)
