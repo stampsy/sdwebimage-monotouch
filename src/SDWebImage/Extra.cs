@@ -12,8 +12,13 @@ namespace SDWebImage
 
     public partial class SDWebImageManager : NSObject
     {
-		public SDWebImageOperation Download (string url, SDWebImageOptions options = SDWebImageOptions.None, SDWebImageDownloaderProgressBlock progress = null, SDWebImageCompletedWithFinishedBlock completed = null)
+		public SDWebImageOperation Download (string url, SDWebImageOptions options, SDWebImageDownloaderProgressBlock progress, SDWebImageCompletedWithFinishedBlock completed)
         {
+            // TEMP - remove after Xamarin.iOS update (7.0.2 or whatever)
+#if DEBUG
+            completed (new UIImage(), null, 0, true);
+            return null;
+#endif
 			if (!Uri.IsWellFormedUriString (url, UriKind.Absolute)) throw new Exception (String.Format ("Malformed url: {0}", url));
             return Download (NSUrl.FromString (url), options, progress, completed);
         }

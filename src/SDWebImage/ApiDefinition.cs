@@ -85,7 +85,7 @@ namespace SDWebImage
 		SDWebImageDownloader ImageDownloader { get; }
 
         [Export ("downloadWithURL:options:progress:completed:")]
-		SDWebImageOperation Download (NSUrl url, SDWebImageOptions options, [NullAllowed] SDWebImageDownloaderProgressBlock progress, [NullAllowed] SDWebImageCompletedWithFinishedBlock completed);
+		SDWebImageOperation Download (NSUrl url, SDWebImageOptions options, [NullAllowed] SDWebImageDownloaderProgressBlock progress, SDWebImageCompletedWithFinishedBlock completed);
 
 		#region UIImageView
 
