@@ -230,8 +230,8 @@ namespace SDWebImage
 
 		#region private methods
 
-        [Export ("cachePathForKey:"), Advice ("This is a private method so be careful!")]
-        string GetCachePath (string key);
+        [Export ("defaultCachePathForKey:"), Advice ("This is a private method so be careful!")]
+        string GetDefaultCachePath (string key);
 
 		#endregion
     }
