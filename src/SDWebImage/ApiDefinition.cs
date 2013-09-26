@@ -228,6 +228,9 @@ namespace SDWebImage
 		[Export ("diskImageExistsWithKey:")]
 		bool DiskImageExists (string key);
 
+		[Export ("setValue:forKey:")]
+		void SetValueForKey ([NullAllowed] NSObject value, NSString key);
+
 		#region private methods
 
         [Export ("defaultCachePathForKey:"), Advice ("This is a private method so be careful!")]
