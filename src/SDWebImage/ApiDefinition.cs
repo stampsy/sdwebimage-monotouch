@@ -7,15 +7,16 @@ using MonoTouch.UIKit;
 
 namespace SDWebImage
 {
-	[BaseType (typeof (UIView))]
+	[BaseType (typeof (NSObject))]
 	[Model]
+	[Protocol]
 	interface SDWebImageManagerDelegate
  	{
 		[Export ("imageManager:shouldDownloadImageForURL:")]
 		void ShouldDownloadImage (SDWebImageManager imageManager, NSUrl url);
 		
 		[Export ("imageManager:transformDownloadedImage:withURL:")]
-		void TransformDownloadedImage (SDWebImageManager imageManager, UIImage image, NSUrl url);
+		UIImage TransformDownloadedImage (SDWebImageManager imageManager, UIImage image, NSUrl url);
 	}
 
 	public delegate void SDWebImageCompletedBlock (UIImage image, NSError error, SDImageCacheType cacheType);
@@ -48,6 +49,7 @@ namespace SDWebImage
 	}
 
 	[BaseType (typeof (NSObject))]
+	[Protocol]
 	interface SDWebImageOperation
 	{
 		[Export ("cancel")]
